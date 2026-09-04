@@ -225,7 +225,7 @@ python --version
 Depois que o projeto estiver publicado no GitHub:
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/fabricioalan-ufms/ecoponto-digital
 ```
 
 Entre na pasta:
