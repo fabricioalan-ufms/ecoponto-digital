@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orientações de Descarte - EcoPonto Digital</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♻️</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark eco-navbar sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="/">
+            <i class="bi bi-recycle"></i>
+            EcoPonto Digital
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Menu de Navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <div class="navbar-nav ms-auto gap-lg-1 pt-3 pt-lg-0">
+                <a href="/" class="nav-link text-white">Início</a>
+                <a href="/pontos" class="nav-link text-white">Pontos de Coleta</a>
+                <a href="/orientacoes" class="nav-link text-white active-link">Orientações</a>
+                <a href="/faq" class="nav-link text-white">FAQ</a>
+                <a href="/sugestoes" class="nav-link text-white">Sugestões</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="page-header">
+    <div class="container">
+        <span class="eco-badge">
+            <i class="bi bi-book-half"></i>
+            Guia Educativo
+        </span>
+        <h1 class="mt-3">Orientações para o Descarte Correto</h1>
+        <p>Aprenda a descartar itens eletrônicos com segurança, protegendo seus dados e a natureza.</p>
+    </div>
+</section>
+
+<main class="container py-5">
+    <div class="row g-4">
+        
+        <!-- O que é lixo eletrônico -->
+        <div class="col-md-6">
+            <div class="info-card">
+                <div class="feature-icon mb-3">
+                    <i class="bi bi-cpu"></i>
+                </div>
+                <h4 class="fw-bold">O que é Lixo Eletrônico (REEE)?</h4>
+                <p>
+                    São todos os aparelhos que funcionavam por eletricidade ou bateria que chegaram ao fim de sua vida útil. Incluem celulares antigos, carregadores, computadores, pilhas, impressoras e pequenos eletrodomésticos.
+                </p>
+            </div>
+        </div>
+
+        <!-- Por que não jogar no lixo comum -->
+        <div class="col-md-6">
+            <div class="info-card">
+                <div class="feature-icon mb-3">
+                    <i class="bi bi-exclamation-triangle"></i>
+                </div>
+                <h4 class="fw-bold">Por que não descartar no lixo comum?</h4>
+                <p>
+                    Equipamentos eletrônicos possuem metais pesados como chumbo, mercúrio e cádmio. Quando vão para lixões ou aterros, essas substâncias tóxicas contaminam o solo, a água subterrânea e causam graves riscos à saúde pública.
+                </p>
+            </div>
+        </div>
+
+        <!-- Privacidade e dados pessoais -->
+        <div class="col-md-6">
+            <div class="info-card">
+                <div class="feature-icon mb-3">
+                    <i class="bi bi-shield-lock"></i>
+                </div>
+                <h4 class="fw-bold">Proteja seus Dados Pessoais</h4>
+                <p>
+                    Antes de entregar celulares, notebooks ou computadores para reciclagem:
+                </p>
+                <ul class="text-secondary small mb-0 ps-3">
+                    <li>Faça backup dos seus arquivos importantes;</li>
+                    <li>Restaure o aparelho para o padrão de fábrica;</li>
+                    <li>Retire chips de operadora (SIM card) e cartões de memória (MicroSD).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Pilhas e baterias -->
+        <div class="col-md-6">
+            <div class="info-card">
+                <div class="feature-icon mb-3">
+                    <i class="bi bi-battery-charging"></i>
+                </div>
+                <h4 class="fw-bold">Cuidados com Pilhas e Baterias</h4>
+                <p>
+                    Pilhas amassadas ou estufadas podem sofrer vazamento químico ou curto-circuito. Guarde-as em recipientes plásticos secos e isole os polos de baterias de lítio com fita adesiva comum antes de levar ao ponto de coleta.
+                </p>
+            </div>
+        </div>
+
+        <!-- Logística Reversa -->
+        <div class="col-12">
+            <div class="info-card bg-light border-success-subtle">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="feature-icon">
+                        <i class="bi bi-arrow-repeat"></i>
+                    </div>
+                    <div>
+                        <h4 class="fw-bold mb-0">A Importância da Logística Reversa</h4>
+                        <small class="text-muted">Lei Federal nº 12.305/2010 (Política Nacional de Resíduos Sólidos)</small>
+                    </div>
+                </div>
+                <p class="mb-0">
+                    A logística reversa garante que fabricantes, importadores, comerciantes e consumidores compartilhem a responsabilidade pelo ciclo de vida dos produtos. Ao entregar seu resíduo em um posto credenciado, os materiais nobres (ouro, cobre, alumínio e plástico) são reintroduzidos na cadeia produtiva, reduzindo drasticamente a extração mineral.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="/pontos" class="btn btn-eco btn-lg">
+            <i class="bi bi-geo-alt-fill me-2"></i> Ver Pontos de Coleta Disponíveis
+        </a>
+    </div>
+</main>
+
+<footer class="eco-footer">
+    <div class="container text-center">
+        <div class="fw-bold fs-6">
+            <i class="bi bi-recycle me-1 text-success"></i> EcoPonto Digital
+        </div>
+        <p class="mb-0">Projeto Integrador de Tecnologia da Informação II — UFMS</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

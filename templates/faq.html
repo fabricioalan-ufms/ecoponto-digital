@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perguntas Frequentes - EcoPonto Digital</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♻️</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark eco-navbar sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="/">
+            <i class="bi bi-recycle"></i>
+            EcoPonto Digital
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Menu de Navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <div class="navbar-nav ms-auto gap-lg-1 pt-3 pt-lg-0">
+                <a href="/" class="nav-link text-white">Início</a>
+                <a href="/pontos" class="nav-link text-white">Pontos de Coleta</a>
+                <a href="/orientacoes" class="nav-link text-white">Orientações</a>
+                <a href="/faq" class="nav-link text-white active-link">FAQ</a>
+                <a href="/sugestoes" class="nav-link text-white">Sugestões</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="page-header">
+    <div class="container">
+        <span class="eco-badge">
+            <i class="bi bi-question-circle-fill"></i>
+            Dúvidas Frequentes
+        </span>
+        <h1 class="mt-3">Perguntas Frequentes (FAQ)</h1>
+        <p>Tire suas dúvidas sobre o funcionamento do sistema e as regras de descarte de resíduos eletrônicos.</p>
+    </div>
+</section>
+
+<main class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            <div class="accordion" id="faqAccordion">
+
+                <!-- 1 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+                            1. O que é considerado lixo eletrônico?
+                        </button>
+                    </h2>
+                    <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            São todos os aparelhos que funcionavam por energia elétrica, pilhas ou baterias que não têm mais uso: computadores, mouses, celulares, fones, carregadores, eletrodomésticos, impressoras e placas eletrônicas.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+                            2. Posso jogar eletrônicos no lixo comum?
+                        </button>
+                    </h2>
+                    <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <strong>Não.</strong> O lixo eletrônico contém substâncias químicas nocivas e metais pesados (mercúrio, cádmio, chumbo). No lixo comum, eles acabam em aterros sanitários ou lixões, provocando contaminação ambiental severa.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
+                            3. Onde descartar celulares antigos?
+                        </button>
+                    </h2>
+                    <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Eles devem ser levados aos postos municipais credenciados ou urnas de logística reversa presentes em operadoras de telefonia e lojas de eletrônicos. Você pode consultar os locais na página <a href="/pontos">Pontos de Coleta</a>.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">
+                            4. Pilhas e baterias podem ser descartadas juntas?
+                        </button>
+                    </h2>
+                    <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Sim, desde que estejam íntegras (sem vazamento aparente) e acondicionadas em recipiente plástico seguro. No caso de baterias recarregáveis (lítio), recomenda-se isolar os polos metálicos com uma fita adesiva simples para evitar faíscas.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5">
+                            5. Preciso apagar meus dados antes de descartar um celular ou computador?
+                        </button>
+                    </h2>
+                    <div id="q5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <strong>Sim, é fundamental.</strong> Realize a restauração para os padrões de fábrica e remova contas de e-mail e cartões de memória para proteger sua privacidade e informações confidenciais antes do descarte.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6">
+                            6. O EcoPonto Digital realiza coleta domiciliar?
+                        </button>
+                    </h2>
+                    <div id="q6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Não. O EcoPonto Digital é uma plataforma acadêmica de informação e utilidade pública que conecta o cidadão aos postos físicos credenciados. O transporte do resíduo até o local de entrega é feito pelo próprio cidadão.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q7">
+                            7. Como posso localizar um ponto de recebimento?
+                        </button>
+                    </h2>
+                    <div id="q7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Basta acessar o menu <a href="/pontos">Pontos de Coleta</a> no topo da página. Você poderá visualizar o mapa da cidade, usar o filtro de busca por material e clicar em "Como chegar no Maps" para traçar uma rota automática via GPS.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<footer class="eco-footer">
+    <div class="container text-center">
+        <div class="fw-bold fs-6">
+            <i class="bi bi-recycle me-1 text-success"></i> EcoPonto Digital
+        </div>
+        <p class="mb-0">Projeto Integrador de Tecnologia da Informação II — UFMS</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

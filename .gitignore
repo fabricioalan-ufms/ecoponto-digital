@@ -1,0 +1,79 @@
+# ==========================================================
+
+# ECOPONTO DIGITAL - .gitignore
+
+# ==========================================================
+
+# Ambiente virtual Python
+
+venv/
+.venv/
+env/
+ENV/
+
+# Cache e arquivos temporários do Python
+
+**pycache**/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# Banco de dados local
+
+# O banco é criado pela aplicação e pode conter dados de teste.
+
+ecoponto.db
+*.db-journal
+
+# Variáveis de ambiente e informações sensíveis
+
+.env
+.env.*
+!.env.example
+
+# Configurações do VS Code
+
+.vscode/
+
+# Configurações do PyCharm / IntelliJ
+
+.idea/
+
+# Arquivos do sistema operacional
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Arquivos temporários
+
+*.tmp
+*.temp
+*.log
+*.bak
+*.swp
+*.swo
+
+# Cache de testes
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Distribuição e build Python
+
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Arquivos compactados ou backups
+
+*.zip
+*.rar
+*.7z
+
+# Arquivos locais de desenvolvimento
+
+instance/
