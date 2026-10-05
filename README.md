@@ -417,6 +417,22 @@ A aplicação pode criar sua estrutura local durante a execução conforme as co
 
 ---
 
+## 📊 Levantamento exploratório com a comunidade
+
+Como complemento à identificação do problema, foi realizado um levantamento exploratório por meio de formulário eletrônico com o objetivo de compreender como moradores de Sonora/MS lidam com o descarte de resíduos eletrônicos e com a busca por informações sobre locais adequados de recebimento.
+
+O formulário recebeu 42 respostas. Destas, 32 foram de participantes que declararam residir em Sonora/MS e foram consideradas prioritariamente na análise da problemática local.
+
+Entre os moradores de Sonora/MS participantes da pesquisa:
+
+- 78,1% afirmaram não saber onde realizar corretamente o descarte ou possuir dúvidas;
+- 75% afirmaram não conhecer um ponto de recebimento de lixo eletrônico no município;
+- 53,1% afirmaram já ter enfrentado dificuldade para encontrar informações sobre descarte;
+- 84,4% consideraram útil ou muito útil a existência de uma solução digital que reúna informações sobre descarte correto e pontos de recebimento;
+- 78,1% indicaram interesse em encontrar informações sobre locais de descarte.
+
+Os dados foram analisados de forma agrupada, preservando a identidade dos participantes. O levantamento possui caráter exploratório e foi utilizado como apoio à análise da necessidade e ao desenvolvimento acadêmico do MVP EcoPonto Digital.
+
 # 📊 Escopo do MVP
 
 O MVP foi propositalmente mantido simples.
