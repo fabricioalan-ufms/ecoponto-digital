@@ -77,3 +77,6 @@ dist/
 # Arquivos locais de desenvolvimento
 
 instance/
+
+__pycache__/
+*.pyc

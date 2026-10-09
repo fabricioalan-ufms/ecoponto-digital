@@ -533,3 +533,66 @@ database/
 
 docs/
 └── diagrama_banco.png
+
+## 🧪 Testes e Garantia de Qualidade — Módulo 4
+
+Nesta etapa do EcoPonto Digital, foram realizadas atividades de verificação e testes para avaliar o funcionamento das funcionalidades desenvolvidas nos módulos anteriores.
+
+### Testes automatizados
+
+Foram implementados oito testes automatizados utilizando o módulo `unittest` do Python e o cliente de testes do Flask.
+
+Os cenários avaliados foram:
+
+1. Carregamento das páginas principais;
+2. Existência dos três pontos de coleta demonstrativos;
+3. Pesquisa por pilhas;
+4. Pesquisa por computadores;
+5. Pesquisa sem resultados;
+6. Impedimento do envio de formulário vazio;
+7. Processamento e armazenamento de uma sugestão válida;
+8. Integridade dos relacionamentos do banco SQLite.
+
+**Resultado:** 8 testes executados e 8 aprovados.
+
+Os testes utilizam um banco SQLite temporário, evitando alterações no banco principal da aplicação.
+
+Para executar os testes, utilize o terminal na pasta principal do projeto:
+
+    python -m unittest discover -s tests -p "test_*.py" -v
+
+### Testes manuais
+
+Também foram realizados 12 testes funcionais manuais, abrangendo:
+
+- Navegação e carregamento das páginas;
+- Exibição dos pontos demonstrativos;
+- Pesquisa por materiais;
+- Tratamento de buscas sem resultados;
+- Validação de campos obrigatórios;
+- Envio de sugestões;
+- Funcionamento das perguntas frequentes;
+- Exibição das orientações educativas;
+- Responsividade da interface;
+- Navegação em resolução mobile;
+- Integração externa com Google Maps.
+
+**Resultado registrado:** 12 testes executados e 12 aprovados.
+
+A integração com Google Maps foi avaliada exclusivamente quanto ao funcionamento do redirecionamento externo. Os pontos apresentados no sistema permanecem identificados como dados demonstrativos.
+
+### Resultados gerais
+
+- Testes automatizados: 8 aprovados;
+- Testes manuais: 12 aprovados;
+- Total: 20 testes aprovados nos cenários avaliados.
+
+As atividades contribuíram para verificar funcionalidades existentes e identificar possíveis necessidades de melhoria, sem representar garantia de ausência de falhas em todos os cenários possíveis.
+
+### Organização dos testes
+
+O código dos testes automatizados está disponível em:
+
+`tests/test_ecoponto.py`
+
+Os registros detalhados dos testes manuais e as capturas de tela foram organizados separadamente como evidências acadêmicas do Módulo 4.
