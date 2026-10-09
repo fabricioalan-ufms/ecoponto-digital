@@ -496,3 +496,40 @@ Curso: **Tecnologia da Informação**
 ## ♻️ EcoPonto Digital
 
 **Tecnologia aplicada à informação, sustentabilidade e descarte responsável.**
+
+## 🗄️ Banco de Dados e Controle de Versão
+
+Nesta etapa do projeto, o banco de dados do EcoPonto Digital foi reorganizado com o objetivo de melhorar a estrutura e o relacionamento das informações.
+
+A aplicação utiliza SQLite e possui as seguintes tabelas:
+
+- `pontos_coleta`: armazena os pontos de recebimento cadastrados;
+- `materiais`: armazena individualmente os tipos de materiais;
+- `ponto_material`: realiza o relacionamento entre pontos de coleta e materiais;
+- `sugestoes`: armazena as contribuições enviadas pelos usuários.
+
+A relação entre pontos de coleta e materiais é do tipo muitos para muitos (N:N), implementada por meio da tabela associativa `ponto_material`.
+
+O projeto também possui arquivos SQL para criação da estrutura do banco, inserção de dados iniciais e demonstração das operações de manipulação de dados.
+
+Foram demonstradas as operações:
+
+- INSERT;
+- SELECT;
+- UPDATE;
+- DELETE.
+
+O controle de versão é realizado com Git e GitHub, utilizando commits descritivos para registrar a evolução da aplicação.
+
+### Estrutura relacionada ao banco
+
+```text
+database/
+├── schema.sql
+├── dados_iniciais.sql
+├── operacoes_crud.sql
+├── demonstrar_crud.py
+└── demonstrar_relacionamentos.py
+
+docs/
+└── diagrama_banco.png
