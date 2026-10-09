@@ -533,6 +533,7 @@ database/
 
 docs/
 └── diagrama_banco.png
+```
 
 ## 🧪 Testes e Garantia de Qualidade — Módulo 4
 
