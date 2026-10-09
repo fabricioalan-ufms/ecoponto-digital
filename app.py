@@ -1,77 +1,47 @@
 from datetime import datetime
+from pathlib import Path
 import sqlite3
+
 from flask import Flask, flash, redirect, render_template, request, url_for
 
+
+BASE_DIR = Path(__file__).resolve().parent
+CAMINHO_BANCO = BASE_DIR / "ecoponto.db"
+CAMINHO_SCHEMA = BASE_DIR / "database" / "schema.sql"
+CAMINHO_DADOS = BASE_DIR / "database" / "dados_iniciais.sql"
+
+
 app = Flask(__name__)
+
 # Chave de sessão necessária para exibir alertas de feedback (flash messages)
 app.secret_key = "ecoponto_chave_secreta_academica_ufms"
 
 
 def conectar_banco():
-    conexao = sqlite3.connect("ecoponto.db")
+    conexao = sqlite3.connect(CAMINHO_BANCO)
     conexao.row_factory = sqlite3.Row
+
+    # Ativa o uso de chaves estrangeiras no SQLite
+    conexao.execute("PRAGMA foreign_keys = ON")
+
     return conexao
 
 
 def inicializar_banco():
     conexao = conectar_banco()
 
-    # Tabela de pontos de coleta
-    conexao.execute("""
-        CREATE TABLE IF NOT EXISTS pontos_coleta (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nome TEXT NOT NULL,
-            endereco TEXT NOT NULL,
-            bairro TEXT NOT NULL,
-            cidade TEXT NOT NULL,
-            materiais TEXT NOT NULL
-        )
-    """)
-
-    # Tabela de sugestões enviadas pelos usuários
-    conexao.execute("""
-        CREATE TABLE IF NOT EXISTS sugestoes (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nome TEXT NOT NULL,
-            email TEXT NOT NULL,
-            mensagem TEXT NOT NULL,
-            data_envio TEXT NOT NULL
-        )
-    """)
+    # Cria as tabelas definidas no schema SQL
+    with open(CAMINHO_SCHEMA, "r", encoding="utf-8") as arquivo:
+        conexao.executescript(arquivo.read())
 
     total_pontos = conexao.execute(
         "SELECT COUNT(*) FROM pontos_coleta"
     ).fetchone()[0]
 
-    # Preenche com dados iniciais de referência em Sonora - MS se estiver vazio
+    # Insere os dados demonstrativos somente se o banco estiver vazio
     if total_pontos == 0:
-        conexao.executemany("""
-            INSERT INTO pontos_coleta
-            (nome, endereco, bairro, cidade, materiais)
-            VALUES (?, ?, ?, ?, ?)
-        """, [
-            (
-                "Gerência de Meio Ambiente (Prefeitura)",
-                "Av. Marcelo Miranda Soares, 1077",
-                "Centro",
-                "Sonora - MS",
-                "Celulares, computadores, cabos, fontes e placas de circuito"
-            ),
-            (
-                "Secretaria de Obras e Serviços Urbanos",
-                "Rua da Saudade, s/n",
-                "Centro",
-                "Sonora - MS",
-                "Monitores, televisores antigos, impressoras e micro-ondas"
-            ),
-            (
-                "Ponto de Coleta de Pilhas e Baterias",
-                "Av. Edson Aparecido Fernandes de Campos, 650",
-                "Centro",
-                "Sonora - MS",
-                "Pilhas alcalinas e comuns, baterias de celular e fones portáteis"
-            )
-        ])
+        with open(CAMINHO_DADOS, "r", encoding="utf-8") as arquivo:
+            conexao.executescript(arquivo.read())
 
     conexao.commit()
     conexao.close()
@@ -87,25 +57,63 @@ def pontos():
     termo = request.args.get("busca", "").strip()
     conexao = conectar_banco()
 
+    consulta_base = """
+        SELECT
+            p.id,
+            p.nome,
+            p.endereco,
+            p.bairro,
+            p.cidade,
+            GROUP_CONCAT(m.nome, ', ') AS materiais
+        FROM pontos_coleta p
+        LEFT JOIN ponto_material pm
+            ON pm.ponto_id = p.id
+        LEFT JOIN materiais m
+            ON m.id = pm.material_id
+    """
+
     if termo:
         param = f"%{termo}%"
-        consulta = """
-            SELECT *
-            FROM pontos_coleta
-            WHERE nome LIKE ? 
-               OR endereco LIKE ? 
-               OR bairro LIKE ? 
-               OR cidade LIKE ? 
-               OR materiais LIKE ?
-            ORDER BY nome
+
+        consulta = consulta_base + """
+            WHERE p.nome LIKE ?
+               OR p.endereco LIKE ?
+               OR p.bairro LIKE ?
+               OR p.cidade LIKE ?
+               OR EXISTS (
+                    SELECT 1
+                    FROM ponto_material pm_busca
+                    INNER JOIN materiais m_busca
+                        ON m_busca.id = pm_busca.material_id
+                    WHERE pm_busca.ponto_id = p.id
+                      AND m_busca.nome LIKE ?
+               )
+            GROUP BY
+                p.id,
+                p.nome,
+                p.endereco,
+                p.bairro,
+                p.cidade
+            ORDER BY p.nome
         """
+
         pontos_coleta = conexao.execute(
-            consulta, (param, param, param, param, param)
+            consulta,
+            (param, param, param, param, param)
         ).fetchall()
+
     else:
-        pontos_coleta = conexao.execute(
-            "SELECT * FROM pontos_coleta ORDER BY nome"
-        ).fetchall()
+        consulta = consulta_base + """
+            GROUP BY
+                p.id,
+                p.nome,
+                p.endereco,
+                p.bairro,
+                p.cidade
+            ORDER BY p.nome
+        """
+
+        pontos_coleta = conexao.execute(consulta).fetchall()
 
     conexao.close()
 
@@ -134,20 +142,39 @@ def sugestoes():
         mensagem = request.form.get("mensagem", "").strip()
 
         if not nome or not email or not mensagem:
-            flash("Por favor, preencha todos os campos do formulário.", "danger")
+            flash(
+                "Por favor, preencha todos os campos do formulário.",
+                "danger"
+            )
             return redirect(url_for("sugestoes"))
 
         data_hora = datetime.now().strftime("%d/%m/%Y às %H:%M")
 
         conexao = conectar_banco()
+
         conexao.execute("""
-            INSERT INTO sugestoes (nome, email, mensagem, data_envio)
+            INSERT INTO sugestoes (
+                nome,
+                email,
+                mensagem,
+                data_envio
+            )
             VALUES (?, ?, ?, ?)
-        """, (nome, email, mensagem, data_hora))
+        """, (
+            nome,
+            email,
+            mensagem,
+            data_hora
+        ))
+
         conexao.commit()
         conexao.close()
 
-        flash("Sua mensagem foi enviada com sucesso! Obrigado pela colaboração.", "success")
+        flash(
+            "Sua mensagem foi enviada com sucesso! Obrigado pela colaboração.",
+            "success"
+        )
+
         return redirect(url_for("sugestoes"))
 
     return render_template("sugestoes.html")
