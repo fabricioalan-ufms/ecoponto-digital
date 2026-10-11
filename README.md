@@ -144,11 +144,11 @@ A interface foi desenvolvida para se adaptar a:
 
 * **RF01** — Exibir informações sobre descarte correto de resíduos eletrônicos.
 * **RF02** — Permitir consultar pontos de coleta cadastrados.
-* **RF03** — Permitir pesquisar pontos por nome, cidade ou bairro.
+* **RF03** — Permitir pesquisar pontos por nome, endereço, cidade, bairro ou material aceito.
 * **RF04** — Informar os materiais aceitos em cada ponto.
 * **RF05** — Disponibilizar perguntas frequentes.
 * **RF06** — Permitir envio de sugestões.
-* **RF07** — Armazenar informações necessárias em banco de dados.
+* **RF07** — Armazenar no SQLite os pontos de coleta demonstrativos, os materiais e as associações entre pontos e materiais.
 * **RF08** — Armazenar as sugestões enviadas pelos usuários.
 
 ---
@@ -163,22 +163,40 @@ A interface foi desenvolvida para se adaptar a:
 * Documentação de instalação e execução.
 * Uso de tecnologias web amplamente disponíveis.
 
+### Critérios de aceitação — revisão documental do PI III, Módulo 1
+
+Os critérios abaixo complementam os requisitos originais; **não devem ser interpretados como testes novos já executados**.
+
+- **RNF01 (responsividade):** em resolução simulada de 390 × 844 pixels, o menu deve continuar acessível e os cartões de pontos devem permanecer legíveis sem sobreposição ou rolagem horizontal indevida. Esse cenário foi avaliado manualmente no PI II; outras resoluções seguem como cobertura futura.
+- **RNF02 (navegação):** as cinco páginas principais devem estar acessíveis pelo menu; a usabilidade com pessoas externas ainda precisa ser avaliada.
+- **RNF03 (persistência):** o banco SQLite deve armazenar dados dos pontos demonstrativos, materiais e sugestões, conforme as tabelas definidas no esquema SQL.
+- **RNF04 (compatibilidade):** o funcionamento manual foi observado no Google Chrome. O suporte a outros navegadores e versões específicas não foi validado; uma futura matriz de compatibilidade deve estabelecer os navegadores/versões e registrar testes correspondentes.
+- **RNF05 (documentação):** manter README e árvore de diretórios consistentes com o projeto versionado.
+- **RNF06 (instalação):** instruções de clonagem e acesso à pasta devem utilizar o mesmo nome de diretório e ser verificadas em ambiente limpo.
+
 ---
 
 ## 📂 Estrutura do projeto
 
 ```text
-EcoPontoDigital/
-│
+ecoponto-digital/                # pasta padrão criada pelo git clone
 ├── app.py
 ├── requirements.txt
 ├── README.md
 ├── .gitignore
-│
+├── database/
+│   ├── schema.sql
+│   ├── dados_iniciais.sql
+│   ├── operacoes_crud.sql
+│   ├── demonstrar_crud.py
+│   └── demonstrar_relacionamentos.py
+├── docs/
+│   └── diagrama_banco.png
+├── tests/
+│   └── test_ecoponto.py
 ├── static/
 │   └── css/
 │       └── style.css
-│
 └── templates/
     ├── index.html
     ├── pontos.html
@@ -186,6 +204,8 @@ EcoPontoDigital/
     ├── faq.html
     └── sugestoes.html
 ```
+
+O arquivo `ecoponto.db` é criado no computador ao executar a aplicação e não é enviado ao GitHub. O ambiente virtual `venv/` também é local.
 
 ### Descrição dos principais arquivos
 
@@ -198,6 +218,28 @@ EcoPontoDigital/
 | `ecoponto.db`      | Banco SQLite criado/utilizado localmente              |
 | `README.md`        | Documentação do projeto                               |
 | `.gitignore`       | Define arquivos que não devem ser enviados ao Git     |
+
+---
+
+## 🧭 Visão arquitetural — complemento da inspeção do PI III
+
+Esta visão apresenta os componentes efetivamente presentes no projeto acadêmico. **O diagrama relacional em `docs/diagrama_banco.png` representa apenas a estrutura dos dados**, e não todos os componentes da aplicação web.
+
+```mermaid
+flowchart TD
+    U[Usuário no navegador] -->|Requisições HTTP| F[Flask / app.py]
+    F -->|Renderização de páginas| T[templates / HTML]
+    T -->|Página exibida| U
+    U -->|Estilos e componentes visuais| S[static/css e Bootstrap]
+    F <-->|Consultas e gravações| DB[(SQLite local: pontos_coleta, materiais, ponto_material e sugestoes)]
+    U -->|Mapa incorporado e links externos| G[Google Maps]
+```
+
+Os pontos listados no sistema são **demonstrativos**; o uso do Google Maps não valida esses locais como pontos oficiais de recebimento.
+
+**Inicialização:** o banco é inicializado pelo método `inicializar_banco()` quando o programa é iniciado com `python app.py`. Se outro servidor importar a aplicação Flask como módulo, é necessário planejar a inicialização separadamente antes de atender a requisições em um banco vazio.
+
+**Configuração:** a versão acadêmica foi desenvolvida para execução local. Antes de qualquer disponibilização pública, devem ser revisados o segredo de sessão definido no código e o modo de depuração do servidor. Esta observação não declara que exista implantação pública em andamento.
 
 ---
 
@@ -231,10 +273,10 @@ git clone https://github.com/fabricioalan-ufms/ecoponto-digital
 Entre na pasta:
 
 ```bash
-cd EcoPontoDigital
+cd ecoponto-digital
 ```
 
-> Substitua `<URL_DO_REPOSITORIO>` pelo endereço real do projeto no GitHub.
+O comando acima utiliza o nome de pasta criado por padrão pelo `git clone`.
 
 ---
 
@@ -509,6 +551,8 @@ A aplicação utiliza SQLite e possui as seguintes tabelas:
 - `sugestoes`: armazena as contribuições enviadas pelos usuários.
 
 A relação entre pontos de coleta e materiais é do tipo muitos para muitos (N:N), implementada por meio da tabela associativa `ponto_material`.
+
+O esquema SQL define `ON DELETE CASCADE` nas duas chaves estrangeiras de `ponto_material`. Assim, a exclusão de um ponto ou material também remove seus vínculos na tabela associativa. A regra não implica excluir automaticamente a entidade do outro lado do relacionamento.
 
 O projeto também possui arquivos SQL para criação da estrutura do banco, inserção de dados iniciais e demonstração das operações de manipulação de dados.
 
