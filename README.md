@@ -239,7 +239,7 @@ Os pontos listados no sistema são **demonstrativos**; o uso do Google Maps não
 
 **Inicialização:** o banco é inicializado pelo método `inicializar_banco()` quando o programa é iniciado com `python app.py`. Se outro servidor importar a aplicação Flask como módulo, é necessário planejar a inicialização separadamente antes de atender a requisições em um banco vazio.
 
-**Configuração:** a versão acadêmica foi desenvolvida para execução local. Antes de qualquer disponibilização pública, devem ser revisados o segredo de sessão definido no código e o modo de depuração do servidor. Esta observação não declara que exista implantação pública em andamento.
+**Configuração após a inspeção do PI III:** o segredo de sessão pode ser fornecido pela variável de ambiente `ECOPONTO_SECRET_KEY`. Sem essa variável, a execução acadêmica local gera uma chave temporária por execução. O depurador Flask está desativado por padrão (`debug=False`). Essas mudanças não tornam o servidor de desenvolvimento adequado para disponibilização pública; para uma implantação real, é necessário configurar um segredo estável no ambiente, utilizar servidor apropriado e revisar os demais aspectos de segurança.
 
 ---
 

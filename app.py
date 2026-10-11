@@ -1,5 +1,7 @@
 from datetime import datetime
 from pathlib import Path
+import os
+import secrets
 import sqlite3
 
 from flask import Flask, flash, redirect, render_template, request, url_for
@@ -13,8 +15,9 @@ CAMINHO_DADOS = BASE_DIR / "database" / "dados_iniciais.sql"
 
 app = Flask(__name__)
 
-# Chave de sessão necessária para exibir alertas de feedback (flash messages)
-app.secret_key = "ecoponto_chave_secreta_academica_ufms"
+# O segredo de sessão pode ser definido no ambiente em uma implantação.
+# Para uso acadêmico local, gera-se uma chave temporária por execução.
+app.secret_key = os.environ.get("ECOPONTO_SECRET_KEY") or secrets.token_hex(32)
 
 
 def conectar_banco():
@@ -182,4 +185,5 @@ def sugestoes():
 
 if __name__ == "__main__":
     inicializar_banco()
-    app.run(debug=True)
+    # O depurador interativo não deve ficar ativado por padrão.
+    app.run(debug=False)
