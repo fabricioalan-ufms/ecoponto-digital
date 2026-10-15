@@ -184,7 +184,7 @@ O workflow [`.github/workflows/ci.yml`](.github/workflows/ci.yml) executa verifi
 4. Execução dos testes automatizados.
 5. Registro do resultado na aba [Actions](https://github.com/fabricioalan-ufms/ecoponto-digital/actions).
 
-O indicador **CI** no início deste README reflete o estado do workflow na branch `main`. A automação de testes está implementada; as demais práticas de entrega contínua estudadas no Projeto Integrador III permanecem como propostas de evolução.
+O indicador **CI** no início deste README acompanha os resultados do workflow executado na branch `main`. A automação de testes está implementada; as demais práticas de entrega contínua estudadas no Projeto Integrador III permanecem como propostas de evolução.
 
 ## Evolução acadêmica
 
