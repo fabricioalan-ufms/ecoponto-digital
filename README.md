@@ -1,643 +1,112 @@
-# ♻️ EcoPonto Digital — Sonora/MS
+# EcoPonto Digital
 
-Aplicação web desenvolvida como MVP acadêmico para a disciplina de **Projeto Integrador de Tecnologia da Informação II**, do curso de **Tecnologia da Informação da Universidade Federal de Mato Grosso do Sul (UFMS)**.
+Aplicação web para consulta de pontos demonstrativos de recebimento de resíduos eletroeletrônicos e orientações sobre descarte responsável.
 
-O EcoPonto Digital utiliza tecnologia web para facilitar o acesso a informações relacionadas ao descarte correto de resíduos eletroeletrônicos e à localização de pontos de recebimento.
+Projeto acadêmico desenvolvido ao longo dos **Projetos Integradores de Tecnologia da Informação I, II e III** da **Universidade Federal de Mato Grosso do Sul (UFMS)**, com foco em **Sonora - MS**.
 
----
+**Aplicação online:** [fabricioalanufms.pythonanywhere.com](https://fabricioalanufms.pythonanywhere.com/)  
+**Código-fonte:** [GitHub — ecoponto-digital](https://github.com/fabricioalan-ufms/ecoponto-digital)
 
-## 📌 Contexto e problema
+## Sobre o projeto
 
-O descarte inadequado de Resíduos de Equipamentos Eletroeletrônicos (REEE) representa um problema ambiental e social.
+O EcoPonto Digital é um MVP construído com Flask e SQLite. A aplicação reúne informações educativas, materiais associados a pontos cadastrados e um canal de sugestões.
 
-Celulares, computadores, carregadores, cabos, baterias, pilhas e outros equipamentos não devem ser descartados juntamente com os resíduos domésticos comuns.
+> **Dados demonstrativos:** os pontos exibidos não foram validados como locais oficiais de recebimento. Os endereços não devem ser utilizados como confirmação de que um estabelecimento recebe resíduos eletrônicos.
 
-Além do problema ambiental, existe a dificuldade de encontrar, de maneira simples e centralizada, informações sobre:
+## Funcionalidades
 
-* locais adequados para descarte;
-* materiais aceitos em cada ponto;
-* logística reversa;
-* cuidados antes do descarte;
-* orientações ambientais.
+- Consulta e pesquisa de pontos por nome, endereço, bairro, cidade ou material.
+- Visualização dos materiais associados a cada ponto cadastrado.
+- Integração com Google Maps para consulta de endereços e rotas.
+- Orientações sobre descarte e proteção de dados pessoais.
+- Perguntas frequentes (FAQ).
+- Formulário de sugestões com persistência em SQLite.
+- Interface responsiva para computadores e dispositivos móveis.
 
-O projeto busca responder a essa necessidade por meio de uma aplicação web simples e acessível.
+## Tecnologias
 
----
+| Área | Ferramentas |
+| --- | --- |
+| Back-end | Python, Flask |
+| Banco de dados | SQLite |
+| Interface | HTML5, CSS3, Bootstrap, Jinja2 |
+| Integração externa | Google Maps |
+| Qualidade e versionamento | unittest, Git, GitHub |
 
-## 💡 Solução proposta
+## Evolução do projeto
 
-O **EcoPonto Digital** é um MVP (*Minimum Viable Product* — Produto Mínimo Viável) que centraliza informações relacionadas ao descarte de resíduos eletroeletrônicos.
+| Etapa | Entregas principais |
+| --- | --- |
+| **Projeto Integrador I** | Análise do problema e levantamento inicial de requisitos. |
+| **Projeto Integrador II** | Desenvolvimento do MVP, modelagem do banco relacional, documentação e testes funcionais. |
+| **Projeto Integrador III** | Inspeção dos artefatos, correções, plano de testes, plano de desenvolvimento seguro e plano de CI/CD. |
 
-A aplicação permite ao usuário:
+No Projeto Integrador II, foram registrados **8 testes automatizados e 12 verificações funcionais manuais**, aprovados nos cenários avaliados. Os planos de segurança e CI/CD elaborados no Projeto Integrador III descrevem propostas de evolução; sua elaboração não significa que todos os controles e pipelines estejam implantados.
 
-* localizar pontos de recebimento;
-* pesquisar locais cadastrados;
-* consultar materiais aceitos;
-* visualizar a região por meio do Google Maps;
-* acessar orientações de descarte;
-* consultar perguntas frequentes;
-* enviar sugestões.
-
-O objetivo não é substituir órgãos públicos, empresas ou sistemas oficiais de logística reversa, mas demonstrar como uma solução tecnológica pode facilitar o acesso da comunidade às informações.
-
----
-
-## ⚠️ Aviso sobre os pontos de coleta
-
-> **Os pontos apresentados nesta versão são utilizados para fins de demonstração acadêmica do MVP EcoPonto Digital.**
->
-> A disponibilização pública da aplicação dependerá da validação das informações junto aos responsáveis pelos locais de recebimento.
-
-Portanto, os registros utilizados no sistema não devem ser considerados automaticamente como pontos oficialmente homologados ou atualmente disponíveis para recebimento de resíduos.
-
----
-
-## 🚀 Funcionalidades
-
-### 🗺️ Mapa da região
-
-Visualização integrada da região urbana de **Sonora - MS** utilizando Google Maps.
-
-### 🔎 Pesquisa de pontos de coleta
-
-Permite pesquisar os registros disponíveis utilizando informações como:
-
-* nome;
-* bairro;
-* cidade;
-* material aceito.
-
-### 📍 Pontos de coleta
-
-Os pontos são apresentados por meio de cards contendo informações como:
-
-* nome do local;
-* endereço;
-* bairro;
-* cidade;
-* materiais recebidos.
-
-### 🧭 Integração com Google Maps
-
-Cada ponto possui acesso ao Google Maps para facilitar a localização e consulta do endereço informado.
-
-### ♻️ Orientações sobre descarte
-
-Área educativa com informações relacionadas a:
-
-* descarte correto;
-* cuidados ambientais;
-* resíduos eletrônicos;
-* pilhas e baterias;
-* segurança das informações pessoais;
-* logística reversa.
-
-### ❓ Perguntas frequentes — FAQ
-
-Página com respostas para dúvidas comuns relacionadas ao descarte de equipamentos eletrônicos.
-
-### 💬 Sugestões
-
-Formulário para que usuários possam registrar contribuições e sugestões relacionadas ao projeto.
-
-As informações são armazenadas localmente utilizando SQLite.
-
-### 📱 Layout responsivo
-
-A interface foi desenvolvida para se adaptar a:
-
-* computadores;
-* notebooks;
-* tablets;
-* smartphones.
-
----
-
-## 🛠️ Tecnologias utilizadas
-
-### Back-end
-
-* **Python**
-* **Flask**
-* **SQLite3**
-
-### Front-end
-
-* **HTML5**
-* **CSS3**
-* **Bootstrap 5**
-* **Bootstrap Icons**
-
-### Interface
-
-* **Plus Jakarta Sans — Google Fonts**
-* Design responsivo
-* Componentes personalizados em CSS
-
-### Serviços externos
-
-* **Google Maps**
-
----
-
-## 🧩 Requisitos funcionais principais
-
-* **RF01** — Exibir informações sobre descarte correto de resíduos eletrônicos.
-* **RF02** — Permitir consultar pontos de coleta cadastrados.
-* **RF03** — Permitir pesquisar pontos por nome, endereço, cidade, bairro ou material aceito.
-* **RF04** — Informar os materiais aceitos em cada ponto.
-* **RF05** — Disponibilizar perguntas frequentes.
-* **RF06** — Permitir envio de sugestões.
-* **RF07** — Armazenar no SQLite os pontos de coleta demonstrativos, os materiais e as associações entre pontos e materiais.
-* **RF08** — Armazenar as sugestões enviadas pelos usuários.
-
----
-
-## ⚙️ Requisitos não funcionais principais
-
-* Interface responsiva.
-* Navegação simples e intuitiva.
-* Compatibilidade com navegadores modernos.
-* Persistência de informações utilizando SQLite.
-* Organização do código-fonte.
-* Documentação de instalação e execução.
-* Uso de tecnologias web amplamente disponíveis.
-
-### Critérios de aceitação — revisão documental do PI III, Módulo 1
-
-Os critérios abaixo complementam os requisitos originais; **não devem ser interpretados como testes novos já executados**.
-
-- **RNF01 (responsividade):** em resolução simulada de 390 × 844 pixels, o menu deve continuar acessível e os cartões de pontos devem permanecer legíveis sem sobreposição ou rolagem horizontal indevida. Esse cenário foi avaliado manualmente no PI II; outras resoluções seguem como cobertura futura.
-- **RNF02 (navegação):** as cinco páginas principais devem estar acessíveis pelo menu; a usabilidade com pessoas externas ainda precisa ser avaliada.
-- **RNF03 (persistência):** o banco SQLite deve armazenar dados dos pontos demonstrativos, materiais e sugestões, conforme as tabelas definidas no esquema SQL.
-- **RNF04 (compatibilidade):** o funcionamento manual foi observado no Google Chrome. O suporte a outros navegadores e versões específicas não foi validado; uma futura matriz de compatibilidade deve estabelecer os navegadores/versões e registrar testes correspondentes.
-- **RNF05 (documentação):** manter README e árvore de diretórios consistentes com o projeto versionado.
-- **RNF06 (instalação):** instruções de clonagem e acesso à pasta devem utilizar o mesmo nome de diretório e ser verificadas em ambiente limpo.
-
----
-
-## 📂 Estrutura do projeto
+## Estrutura do repositório
 
 ```text
-ecoponto-digital/                # pasta padrão criada pelo git clone
+ecoponto-digital/
 ├── app.py
-├── requirements.txt
-├── README.md
-├── .gitignore
 ├── database/
 │   ├── schema.sql
 │   ├── dados_iniciais.sql
-│   ├── operacoes_crud.sql
-│   ├── demonstrar_crud.py
-│   └── demonstrar_relacionamentos.py
+│   └── ...
 ├── docs/
-│   └── diagrama_banco.png
-├── tests/
-│   └── test_ecoponto.py
 ├── static/
 │   └── css/
-│       └── style.css
-└── templates/
-    ├── index.html
-    ├── pontos.html
-    ├── orientacoes.html
-    ├── faq.html
-    └── sugestoes.html
+├── templates/
+│   ├── index.html
+│   ├── pontos.html
+│   ├── orientacoes.html
+│   ├── faq.html
+│   └── sugestoes.html
+├── tests/
+│   └── test_ecoponto.py
+├── .gitignore
+├── requirements.txt
+└── README.md
 ```
 
-O arquivo `ecoponto.db` é criado no computador ao executar a aplicação e não é enviado ao GitHub. O ambiente virtual `venv/` também é local.
+O banco relacional contém quatro tabelas: `pontos_coleta`, `materiais`, `ponto_material` e `sugestoes`. A tabela `ponto_material` representa o relacionamento muitos-para-muitos entre pontos e materiais. O arquivo local `ecoponto.db` não deve ser publicado quando contiver dados de usuários.
 
-### Descrição dos principais arquivos
+## Executar localmente
 
-| Arquivo/Pasta      | Finalidade                                            |
-| ------------------ | ----------------------------------------------------- |
-| `app.py`           | Aplicação Flask, rotas, consultas e regras do sistema |
-| `requirements.txt` | Dependências necessárias para executar o projeto      |
-| `templates/`       | Páginas HTML processadas pelo Flask                   |
-| `static/css/`      | Arquivos responsáveis pela estilização                |
-| `ecoponto.db`      | Banco SQLite criado/utilizado localmente              |
-| `README.md`        | Documentação do projeto                               |
-| `.gitignore`       | Define arquivos que não devem ser enviados ao Git     |
+**Pré-requisitos:** Python 3, pip e Git.
 
----
+No PowerShell do Windows:
 
-## 🧭 Visão arquitetural — complemento da inspeção do PI III
-
-Esta visão apresenta os componentes efetivamente presentes no projeto acadêmico. **O diagrama relacional em `docs/diagrama_banco.png` representa apenas a estrutura dos dados**, e não todos os componentes da aplicação web.
-
-```mermaid
-flowchart TD
-    U[Usuário no navegador] -->|Requisições HTTP| F[Flask / app.py]
-    F -->|Renderização de páginas| T[templates / HTML]
-    T -->|Página exibida| U
-    U -->|Estilos e componentes visuais| S[static/css e Bootstrap]
-    F <-->|Consultas e gravações| DB[(SQLite local: pontos_coleta, materiais, ponto_material e sugestoes)]
-    U -->|Mapa incorporado e links externos| G[Google Maps]
-```
-
-Os pontos listados no sistema são **demonstrativos**; o uso do Google Maps não valida esses locais como pontos oficiais de recebimento.
-
-**Inicialização:** o banco é inicializado pelo método `inicializar_banco()` quando o programa é iniciado com `python app.py`. Se outro servidor importar a aplicação Flask como módulo, é necessário planejar a inicialização separadamente antes de atender a requisições em um banco vazio.
-
-**Configuração após a inspeção do PI III:** o segredo de sessão pode ser fornecido pela variável de ambiente `ECOPONTO_SECRET_KEY`. Sem essa variável, a execução acadêmica local gera uma chave temporária por execução. O depurador Flask está desativado por padrão (`debug=False`). Essas mudanças não tornam o servidor de desenvolvimento adequado para disponibilização pública; para uma implantação real, é necessário configurar um segredo estável no ambiente, utilizar servidor apropriado e revisar os demais aspectos de segurança.
-
----
-
-# ▶️ Como executar
-
-## 1. Pré-requisitos
-
-É necessário possuir:
-
-* Python 3 instalado;
-* pip;
-* navegador web;
-* Git, caso deseje clonar o repositório.
-
-Para conferir o Python:
-
-```bash
-python --version
-```
-
----
-
-## 2. Clonar o repositório
-
-Depois que o projeto estiver publicado no GitHub:
-
-```bash
-git clone https://github.com/fabricioalan-ufms/ecoponto-digital
-```
-
-Entre na pasta:
-
-```bash
+```powershell
+git clone https://github.com/fabricioalan-ufms/ecoponto-digital.git
 cd ecoponto-digital
-```
-
-O comando acima utiliza o nome de pasta criado por padrão pelo `git clone`.
-
----
-
-## 3. Criar o ambiente virtual
-
-No Windows:
-
-```powershell
 python -m venv venv
-```
-
----
-
-## 4. Ativar o ambiente virtual
-
-No PowerShell:
-
-```powershell
 .\venv\Scripts\Activate.ps1
-```
-
-Caso o PowerShell bloqueie a execução do script, utilize primeiro:
-
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-```
-
-Depois:
-
-```powershell
-.\venv\Scripts\Activate.ps1
-```
-
-Quando estiver ativo, o terminal deverá apresentar algo semelhante a:
-
-```text
-(venv) PS C:\...\EcoPontoDigital>
-```
-
----
-
-## 5. Instalar as dependências
-
-Execute:
-
-```powershell
-pip install -r requirements.txt
-```
-
-As principais dependências utilizadas pelo projeto são Flask e seus componentes necessários.
-
----
-
-## 6. Executar a aplicação
-
-Execute:
-
-```powershell
+python -m pip install -r requirements.txt
 python app.py
 ```
 
-O terminal deverá apresentar endereço semelhante a:
+Acesse `http://127.0.0.1:5000` no navegador.
 
-```text
-http://127.0.0.1:5000
+A execução por `python app.py` inicializa o banco SQLite com os dados demonstrativos, quando necessário. Em hospedagens WSGI, a inicialização deve ser configurada separadamente.
+
+## Testes automatizados
+
+Execute na raiz do repositório:
+
+```powershell
+python -m unittest discover -s tests -p "test_*.py" -v
 ```
 
----
+Os oito testes cobrem carregamento das páginas, pontos iniciais, pesquisa, validação do formulário, persistência de sugestões e integridade relacional. Cada teste utiliza um banco SQLite temporário.
 
-## 7. Acessar o sistema
+## Publicação e limitações
 
-Abra no navegador:
+A versão demonstrativa tem endereço público no PythonAnywhere, que fornece o ambiente de execução da aplicação Flask. O GitHub mantém o código-fonte e o histórico de versões; o GitHub Pages, isoladamente, não executa Python nem SQLite.
 
-```text
-http://127.0.0.1:5000
-```
+A hospedagem exige cuidados com a persistência e o backup do SQLite, o tratamento dos dados enviados pelo formulário e as configurações de segurança. Mesmo com o site acessível publicamente, os pontos cadastrados continuam **demonstrativos e não validados** como locais oficiais de recebimento.
 
-A página inicial do EcoPonto Digital será exibida.
+## Autor
 
----
+**Fabricio Alan Rocha** — Tecnologia da Informação, UFMS.
 
-# 🧪 Utilização
-
-## Consultar pontos de coleta
-
-Acesse:
-
-```text
-/pontos
-```
-
-ou utilize a opção **Pontos de Coleta** no menu principal.
-
----
-
-## Pesquisar
-
-Na página de pontos de coleta, utilize o campo de busca para procurar registros relacionados ao termo informado.
-
-Exemplos:
-
-```text
-pilhas
-```
-
-```text
-celular
-```
-
-```text
-Centro
-```
-
----
-
-## Orientações
-
-Acesse a opção:
-
-```text
-Orientações
-```
-
-para visualizar informações relacionadas ao descarte correto.
-
----
-
-## FAQ
-
-A opção:
-
-```text
-FAQ
-```
-
-apresenta respostas para dúvidas frequentes.
-
----
-
-## Sugestões
-
-Na página:
-
-```text
-Sugestões
-```
-
-o usuário pode preencher o formulário disponibilizado pela aplicação.
-
----
-
-# 📱 Responsividade
-
-O projeto utiliza Bootstrap e CSS personalizado para adaptação da interface a diferentes tamanhos de tela.
-
-A aplicação pode ser utilizada em:
-
-* desktop;
-* notebook;
-* tablet;
-* smartphone.
-
----
-
-# 🗃️ Banco de dados
-
-O projeto utiliza **SQLite** por sua simplicidade e adequação a um MVP acadêmico.
-
-O banco permite armazenar informações necessárias para funcionamento local da aplicação.
-
-O arquivo:
-
-```text
-ecoponto.db
-```
-
-não é versionado no GitHub por estar incluído no `.gitignore`.
-
-A aplicação pode criar sua estrutura local durante a execução conforme as configurações implementadas no projeto.
-
----
-
-## 📊 Levantamento exploratório com a comunidade
-
-Como complemento à identificação do problema, foi realizado um levantamento exploratório por meio de formulário eletrônico com o objetivo de compreender como moradores de Sonora/MS lidam com o descarte de resíduos eletrônicos e com a busca por informações sobre locais adequados de recebimento.
-
-O formulário recebeu 42 respostas. Destas, 32 foram de participantes que declararam residir em Sonora/MS e foram consideradas prioritariamente na análise da problemática local.
-
-Entre os moradores de Sonora/MS participantes da pesquisa:
-
-- 78,1% afirmaram não saber onde realizar corretamente o descarte ou possuir dúvidas;
-- 75% afirmaram não conhecer um ponto de recebimento de lixo eletrônico no município;
-- 53,1% afirmaram já ter enfrentado dificuldade para encontrar informações sobre descarte;
-- 84,4% consideraram útil ou muito útil a existência de uma solução digital que reúna informações sobre descarte correto e pontos de recebimento;
-- 78,1% indicaram interesse em encontrar informações sobre locais de descarte.
-
-Os dados foram analisados de forma agrupada, preservando a identidade dos participantes. O levantamento possui caráter exploratório e foi utilizado como apoio à análise da necessidade e ao desenvolvimento acadêmico do MVP EcoPonto Digital.
-
-# 📊 Escopo do MVP
-
-O MVP foi propositalmente mantido simples.
-
-Foram priorizados recursos capazes de demonstrar o funcionamento da solução sem adicionar complexidade desnecessária.
-
-## Incluído no MVP
-
-* consulta de pontos;
-* busca;
-* mapa;
-* orientações;
-* FAQ;
-* sugestões;
-* responsividade;
-* persistência local.
-
-## Recursos possíveis para versões futuras
-
-* painel administrativo;
-* autenticação de administradores;
-* validação e atualização automática dos pontos;
-* geolocalização do usuário;
-* cálculo automático de distância;
-* integração com APIs oficiais;
-* cadastro de novos pontos por instituições;
-* notificações sobre campanhas de coleta;
-* aplicação mobile.
-
----
-
-# 🎯 Objetivo acadêmico
-
-O projeto busca aplicar conhecimentos relacionados a:
-
-* desenvolvimento web;
-* engenharia de requisitos;
-* banco de dados;
-* experiência do usuário;
-* responsividade;
-* desenvolvimento de MVP;
-* sustentabilidade;
-* resolução de problemas utilizando Tecnologia da Informação.
-
-A proposta também busca relacionar conhecimentos acadêmicos a uma demanda social e ambiental.
-
----
-
-# 🎓 Projeto acadêmico
-
-Projeto desenvolvido no contexto da disciplina:
-
-**Projeto Integrador de Tecnologia da Informação II**
-
-Universidade Federal de Mato Grosso do Sul — **UFMS**
-
-Curso: **Tecnologia da Informação**
-
----
-
-## ♻️ EcoPonto Digital
-
-**Tecnologia aplicada à informação, sustentabilidade e descarte responsável.**
-
-## 🗄️ Banco de Dados e Controle de Versão
-
-Nesta etapa do projeto, o banco de dados do EcoPonto Digital foi reorganizado com o objetivo de melhorar a estrutura e o relacionamento das informações.
-
-A aplicação utiliza SQLite e possui as seguintes tabelas:
-
-- `pontos_coleta`: armazena os pontos de recebimento cadastrados;
-- `materiais`: armazena individualmente os tipos de materiais;
-- `ponto_material`: realiza o relacionamento entre pontos de coleta e materiais;
-- `sugestoes`: armazena as contribuições enviadas pelos usuários.
-
-A relação entre pontos de coleta e materiais é do tipo muitos para muitos (N:N), implementada por meio da tabela associativa `ponto_material`.
-
-O esquema SQL define `ON DELETE CASCADE` nas duas chaves estrangeiras de `ponto_material`. Assim, a exclusão de um ponto ou material também remove seus vínculos na tabela associativa. A regra não implica excluir automaticamente a entidade do outro lado do relacionamento.
-
-O projeto também possui arquivos SQL para criação da estrutura do banco, inserção de dados iniciais e demonstração das operações de manipulação de dados.
-
-Foram demonstradas as operações:
-
-- INSERT;
-- SELECT;
-- UPDATE;
-- DELETE.
-
-O controle de versão é realizado com Git e GitHub, utilizando commits descritivos para registrar a evolução da aplicação.
-
-### Estrutura relacionada ao banco
-
-```text
-database/
-├── schema.sql
-├── dados_iniciais.sql
-├── operacoes_crud.sql
-├── demonstrar_crud.py
-└── demonstrar_relacionamentos.py
-
-docs/
-└── diagrama_banco.png
-```
-
-## 🧪 Testes e Garantia de Qualidade — Módulo 4
-
-Nesta etapa do EcoPonto Digital, foram realizadas atividades de verificação e testes para avaliar o funcionamento das funcionalidades desenvolvidas nos módulos anteriores.
-
-### Testes automatizados
-
-Foram implementados oito testes automatizados utilizando o módulo `unittest` do Python e o cliente de testes do Flask.
-
-Os cenários avaliados foram:
-
-1. Carregamento das páginas principais;
-2. Existência dos três pontos de coleta demonstrativos;
-3. Pesquisa por pilhas;
-4. Pesquisa por computadores;
-5. Pesquisa sem resultados;
-6. Impedimento do envio de formulário vazio;
-7. Processamento e armazenamento de uma sugestão válida;
-8. Integridade dos relacionamentos do banco SQLite.
-
-**Resultado:** 8 testes executados e 8 aprovados.
-
-Os testes utilizam um banco SQLite temporário, evitando alterações no banco principal da aplicação.
-
-Para executar os testes, utilize o terminal na pasta principal do projeto:
-
-    python -m unittest discover -s tests -p "test_*.py" -v
-
-### Testes manuais
-
-Também foram realizados 12 testes funcionais manuais, abrangendo:
-
-- Navegação e carregamento das páginas;
-- Exibição dos pontos demonstrativos;
-- Pesquisa por materiais;
-- Tratamento de buscas sem resultados;
-- Validação de campos obrigatórios;
-- Envio de sugestões;
-- Funcionamento das perguntas frequentes;
-- Exibição das orientações educativas;
-- Responsividade da interface;
-- Navegação em resolução mobile;
-- Integração externa com Google Maps.
-
-**Resultado registrado:** 12 testes executados e 12 aprovados.
-
-A integração com Google Maps foi avaliada exclusivamente quanto ao funcionamento do redirecionamento externo. Os pontos apresentados no sistema permanecem identificados como dados demonstrativos.
-
-### Resultados gerais
-
-- Testes automatizados: 8 aprovados;
-- Testes manuais: 12 aprovados;
-- Total: 20 testes aprovados nos cenários avaliados.
-
-As atividades contribuíram para verificar funcionalidades existentes e identificar possíveis necessidades de melhoria, sem representar garantia de ausência de falhas em todos os cenários possíveis.
-
-### Organização dos testes
-
-O código dos testes automatizados está disponível em:
-
-`tests/test_ecoponto.py`
-
-Os registros detalhados dos testes manuais e as capturas de tela foram organizados separadamente como evidências acadêmicas do Módulo 4.
+[Repositório no GitHub](https://github.com/fabricioalan-ufms/ecoponto-digital)
